@@ -10,6 +10,7 @@ var exphbs  = require('express-handlebars');
 
 var routes = require('./routes/index');
 var users = require('./routes/user');
+var chat = require('./routes/chat');
 
 var app = express();
 
@@ -19,7 +20,7 @@ app.engine('handlebars', exphbs({
   defaultLayout: 'main',
   partialsDir: ['views/partials/']
 }));
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
 var env = process.env.NODE_ENV || 'development';
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, '../')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/chat', chat);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

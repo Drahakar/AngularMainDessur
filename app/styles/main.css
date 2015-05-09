@@ -89,3 +89,16 @@ body {
 .chat-container .message-message {
   display: inline-block;
 }
+
+.chat-container .message-author-picture {
+  width: 25px
+}
+
+.chat-container .message-author-name {
+    font-weight: bold;
+}
+
+.chat-container {
+  max-height: 400px;
+  overflow: scroll;
+}

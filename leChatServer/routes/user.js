@@ -15,13 +15,12 @@ function getRandomArbitrary(min, max) {
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-  	res.send('respond with a resource');
 });
 
-router.get('/imageFast', function(req, res) {
+router.get('/infoFast/:username', function(req, res) {
 
 	if (getRandomArbitrary(0, 10) < 2) {
-    	res.send(faker.internet.avatar());
+    	res.send(faker.helpers.createCard());
 	} else {
     	res.status(500);
 		res.send('Yep, "flaky" is the word');
@@ -29,10 +28,15 @@ router.get('/imageFast', function(req, res) {
 
 });
 
-router.get('/imageSlow', function(req, res) {
+router.get('/infoSlow/:username', function(req, res) {
 	setTimeout(function () {
-  		res.send(faker.internet.avatar());
+  		res.sendfile(faker.helpers.createCard());
 	}, 5000)
+})
+
+router.get('/image/:username', function(req, res) {
+	//res.writeHead(200, {'Content-Type': 'text/plain' });
+     res.send(faker.image.cats() + '?' + req.params.username);
 })
 
 module.exports = router;

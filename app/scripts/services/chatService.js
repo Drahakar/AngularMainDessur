@@ -1,41 +1,19 @@
 angular.module('leChatApp')
-  .service('chatService', function ($interval) {
+  .service('chatService', function ($interval, $http) {
     var chatService = this;
-    function makeid()
-    {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        for( var i=0; i < 5; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        return text;
-    }
-
-
-    
-    chatService.messages = [
-    	{
-    		author: 'Andy',
-    		message: 'Lol k. no joke ^_^',
-    		isStared: false
-    	},
-    	{
-    		author: 'Bob', 
-    		message: 'Zis is funny',
-    		isStared: false
-    	}
-    ];
+    chatService.messages = [];
 
     $interval(function() {
-      chatService.messages.push({
-        author: 'keepAlive', 
-        message: makeid(),
-        isStared: false
-      });
-    }
-    , 10000);
+    	$http.get('chat').then( function(results) {
+    		chatService.messages = results.data.reverse();
+	    });
+	}, 1000);	
+      
 
+    chatService.sendChat = function(chatMessage) {
+    	return $http.post('chat', {username: 'TEST', message: chatMessage});
+    };
 
 
     return chatService

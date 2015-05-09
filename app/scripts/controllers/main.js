@@ -15,6 +15,15 @@ angular.module('leChatApp')
       'Karma'
     ];
     $scope.chat = {};
+    $scope.chatInput = "test";
+
+    $scope.submit = function() {
+		chatService.sendChat($scope.chatInput);
+    };
+
+    $scope.$watch(function () { return chatService.messages }, function (newVal) {
+	    $scope.chat.messages = newVal;
+	});
 
     $scope.chat.messages = chatService.messages;
   });
