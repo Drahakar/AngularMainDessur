@@ -80,3 +80,12 @@ body {
     border-bottom: 0;
   }
 }
+
+/* leChat */
+.chat-container .message-author {
+  display: inline-block;
+}
+
+.chat-container .message-message {
+  display: inline-block;
+}
