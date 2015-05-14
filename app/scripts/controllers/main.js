@@ -15,13 +15,21 @@ angular.module('leChatApp')
       'Karma'
     ];
     $scope.chat = {};
-    $scope.chatInput = "test";
+    $scope.chatInput = '';
 
     $scope.submit = function() {
-		chatService.sendChat($scope.chatInput);
+		chatService.sendChat($scope.chatInput)
+		.then(chatService.updateChat)
+		.then(function() {
+			$scope.chatInput = '';
+		});
     };
 
-    $scope.$watch(function () { return chatService.messages }, function (newVal) {
+    function updateChat() {
+    	$scope.chat.message = chatService.messages;
+    }
+
+    $scope.$watch(function () { return chatService.messages; }, function (newVal) {
 	    $scope.chat.messages = newVal;
 	});
 

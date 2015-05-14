@@ -1,3 +1,5 @@
+"uses strict";
+
 angular.module('leChatApp')
   .service('chatService', function ($interval, $http) {
     var chatService = this;
@@ -5,16 +7,20 @@ angular.module('leChatApp')
     chatService.messages = [];
 
     $interval(function() {
-    	$http.get('chat').then( function(results) {
-    		chatService.messages = results.data.reverse();
-	    });
+    	chatService.updateChat();
 	}, 1000);	
       
+
+    chatService.updateChat = function() {
+    	return $http.get('chat').then( function(results) {
+    		return chatService.messages = results.data.reverse();
+	    });
+    };
 
     chatService.sendChat = function(chatMessage) {
     	return $http.post('chat', {username: 'TEST', message: chatMessage});
     };
 
 
-    return chatService
+    return chatService;
   });

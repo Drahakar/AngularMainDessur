@@ -100,5 +100,9 @@ body {
 
 .chat-container {
   max-height: 400px;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+ng-form a {
+  cursor:pointer;
 }

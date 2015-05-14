@@ -6,8 +6,8 @@
   </div>
 </div>
 <div>
-    <ng-form name="chatInputForm">
-      <input type="text" ng-model="chatInput" name="chatInput"/>
-      <a type="button" ng-click="submit()">Send!</a>
-    </ng-form>
+    <form name="chatInputForm" ng-submit="submit()">
+      <input type="text" ng-model="chatInput" name="chatInput" placeholder="Send text"/>
+      <input type="submit"/>
+    </form>
 </div>
