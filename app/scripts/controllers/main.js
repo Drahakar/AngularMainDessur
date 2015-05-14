@@ -14,24 +14,31 @@ angular.module('leChatApp')
       'AngularJS',
       'Karma'
     ];
-    $scope.chat = {};
+    $scope.chat = {
+    	notVisibleMessages: 0,
+    	messages: []
+    };
+
     $scope.chatInput = '';
 
     $scope.submit = function() {
 		chatService.sendChat($scope.chatInput)
-		.then(chatService.updateChat)
+		.then($scope.updateChat)
 		.then(function() {
 			$scope.chatInput = '';
 		});
     };
 
-    function updateChat() {
-    	$scope.chat.message = chatService.messages;
-    }
+    $scope.updateChat = function() {
+    	chatService.updateChat().then(function() {
+    		$scope.chat.messages = chatService.messages;
+    		$scope.chat.notVisibleMessages = 0;	
+    	});    	
+    };
 
     $scope.$watch(function () { return chatService.messages; }, function (newVal) {
-	    $scope.chat.messages = newVal;
+    	$scope.chat.notVisibleMessages = newVal.length - $scope.chat.messages.length
 	});
 
-    $scope.chat.messages = chatService.messages;
+    $scope.updateChat();
   });

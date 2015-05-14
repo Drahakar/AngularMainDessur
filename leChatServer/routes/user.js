@@ -29,8 +29,9 @@ router.get('/infoFast/:username', function(req, res) {
 });
 
 router.get('/infoSlow/:username', function(req, res) {
+  console.log('sending slow info');
 	setTimeout(function () {
-  		res.sendfile(faker.helpers.createCard());
+  		res.send(faker.helpers.createCard());
 	}, 5000)
 })
 
