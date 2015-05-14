@@ -37,6 +37,7 @@ router.post('/', function(req, res) {
         },
         message: req.body.message
       });
+   res.send(200);
 });
 
 router.get('/reset', function(req, res) {
