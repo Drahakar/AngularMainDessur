@@ -1,0 +1,38 @@
+<h1>Profile</h1>
+
+<form name="profileForm" submit="saveProfile()" novalidate>
+	<div class="form-group">
+		<label for="profileName">Name</label>
+		<input type="text" 
+				name="name" 
+				id="profileName" 
+				ng-model="user.name" 
+				placeholder="Name" 
+				class="form-control" 
+				required ng-min-length="1"
+				ng-class="{'has-error': profileForm.name.$invalid}"/>
+	</div>
+	<div class="form-group">
+		<label for="profileAge">Age</label>
+		<input type="number" 
+				name="age" 
+				ng-model="user.age" 
+				ng-min="1" 
+				id="profileAge" 
+				placeholder="Age" 
+				class="form-control"
+				ng-class="{'has-error': profileForm.age.$invalid}"/>
+	</div>
+	<div class="form-group">
+		<label for="profileEmail">Email</label>
+		<input type="email" 
+				name="email" 
+				id="profileEmail" 
+				ng-model="user.email" 
+				placeholder="Email" 
+				class="form-control"
+				ng-class="{'has-error': profileForm.email.$invalid}"/>
+	</div>
+	<input type="submit" class="btn btn-success" />
+	<div ng-show="profileForm.$invalid && profileForm.$dirty" class=".danger">There is error in this form</div>
+</form>

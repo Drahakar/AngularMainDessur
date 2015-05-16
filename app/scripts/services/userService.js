@@ -16,5 +16,16 @@ angular.module('leChatApp')
 	    });
     };
 
+    userService.getCurrentUserProfile = function() {
+    	return $http.get('users/profile')
+    	.then(function(profileInfo) {
+    		return profileInfo.data;
+    	})
+    }
+
+    userService.saveCurrentUserProfile = function(user) {
+        return $http.post('users/profile', user);
+    }
+
     return userService;
   });

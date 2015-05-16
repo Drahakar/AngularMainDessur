@@ -9,11 +9,6 @@
  */
 angular.module('leChatApp')
   .controller('MainCtrl', function ($scope, chatService) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
     $scope.chat = {
     	notVisibleMessages: 0,
     	messages: []
@@ -22,11 +17,15 @@ angular.module('leChatApp')
     $scope.chatInput = '';
 
     $scope.submit = function() {
-		chatService.sendChat($scope.chatInput)
-		.then($scope.updateChat)
-		.then(function() {
-			$scope.chatInput = '';
-		});
+      if ($scope.chatInputForm.$invalid) {
+        return;
+      }
+
+  		chatService.sendChat($scope.chatInput)
+    		.then($scope.updateChat)
+    		.then(function() {
+    			$scope.chatInput = '';
+    		});
     };
 
     $scope.updateChat = function() {

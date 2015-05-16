@@ -13,14 +13,27 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+var users = {};
+
+function getUser(username) {
+  if (!users[username]) {
+    users[username] = faker.helpers.createCard();
+    users[username].name = username;
+    users[username].username = username;
+  }
+
+  return users[username];
+}
+
 /* GET users listing. */
 router.get('/', function(req, res) {
 });
 
 router.get('/infoFast/:username', function(req, res) {
 
-	if (getRandomArbitrary(0, 10) < 2) {
-    	res.send(faker.helpers.createCard());
+	//if (getRandomArbitrary(0, 10) < 2) {
+  if (getRandomArbitrary(0, 10) < 20) {
+    	res.send(getUser(req.params.username));
 	} else {
     	res.status(500);
 		res.send('Yep, "flaky" is the word');
@@ -31,7 +44,7 @@ router.get('/infoFast/:username', function(req, res) {
 router.get('/infoSlow/:username', function(req, res) {
   console.log('sending slow info');
 	setTimeout(function () {
-  		res.send(faker.helpers.createCard());
+  		res.send(getUser(req.params.username));
 	}, 5000)
 })
 
