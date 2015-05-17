@@ -11,5 +11,7 @@
     <form name="chatInputForm" ng-submit="submit()">
       <input type="text" ng-model="chatInput" name="chatInput" placeholder="Send text" ng-minlength="3" required/>
       <input type="submit" ng-disabled="chatInputForm.$invalid" class="btn btn-success"/>
+      <br/>
+      <div ng-class="{'too-long': chatInput.length > 20 }">Preview : {{chatInput}}</div>
     </form>
 </div>

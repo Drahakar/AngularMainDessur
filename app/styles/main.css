@@ -115,3 +115,11 @@ button[disabled], html input[disabled] {
 form[name="chatInputForm"] {
   margin-top: 20px;
 }
+
+.error-message {
+
+}
+
+.too-long {
+  color:red;
+}
