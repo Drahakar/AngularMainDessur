@@ -18,7 +18,7 @@ angular.module('leChatApp')
     };
 
     chatService.sendChat = function(chatMessage) {
-    	return $http.post('chat', {username: 'TEST', message: chatMessage});
+    	return $http.post('chat', {username: 'Me', message: chatMessage});
     };
 
 
