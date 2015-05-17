@@ -4,11 +4,13 @@ angular.module('leChatApp')
   .controller('ProfileCtrl', function ($scope, userService) {
 
   	$scope.saveProfile = function() {
-		if($scope.profileForm.$invalid) {
-			return;
-		}
+  		if($scope.profileForm.$invalid) {
+  			return;
+  		}
 
-		userService.saveProfile($scope.user);
+      userService.saveCurrentUserProfile($scope.user).then(function() {
+        $scope.status = "Profile saved.";
+      });
   	};
 
   	userService.getCurrentUserProfile().then(function(userInfo) {

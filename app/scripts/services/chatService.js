@@ -1,4 +1,4 @@
-"uses strict";
+'use strict';
 
 angular.module('leChatApp')
   .service('chatService', function ($interval, $http) {
@@ -13,12 +13,13 @@ angular.module('leChatApp')
 
     chatService.updateChat = function() {
     	return $http.get('chat').then( function(results) {
-    		return chatService.messages = results.data.reverse();
+    		chatService.messages = results.data.reverse();
+            return chatService.messages;
 	    });
     };
 
     chatService.sendChat = function(chatMessage) {
-    	return $http.post('chat', {username: 'Me', message: chatMessage});
+    	return $http.post('chat', {username: 'Current User', message: chatMessage});
     };
 
 

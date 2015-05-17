@@ -1,7 +1,16 @@
+<form name="filterForm">
+  <div class="form-group">
+    <label>filter</label>
+    <input type="text" 
+        name="filter" 
+        ng-model="textFilter"  
+        class="form-control" />
+  </div>
+</form>
 <div class="row chat-container">
   <div class="chat-show-last" ng-show="chat.notVisibleMessages > 0"><a ng-click="updateChat()">Show last {{chat.notVisibleMessages}} <ng-pluralize count="chat.notVisibleMessages" when="{'1': 'message',
   'other': 'messages'}"></ng-pluralize></a></div>
-  <div class="chat-message-container" ng-repeat="message in chat.messages track by message.postId">
+  <div class="chat-message-container" ng-repeat="message in chat.messages | filter: textFilter track by message.postId ">
     <div class="message-author"><img ng-src="{{message.author.imageUrl}}" class="message-author-picture"></img><span class="message-author-name"><a href="#/user/{{message.author.name}}">{{message.author.name}}</a></span></div>
     <div class="message-message">{{message.message}}</div>
     <div class="chat-message-option">{{message.isStarred}}</div>

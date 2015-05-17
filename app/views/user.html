@@ -1,3 +1,11 @@
 <h1>User {{user.name}}</h1>
 <div ng-if="!user">Loading from server ...</div>
-Other info {{user}}
+<div ng-if="user">
+	Name : {{user.name}} <br/>
+	Email :  {{user.email}} <br/>
+	<img ng-src="{{user.image}}"/>
+</div>
+
+<!--Other info {{user}}-->
+
+

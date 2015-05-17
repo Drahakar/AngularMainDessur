@@ -14,12 +14,15 @@ function getRandomArbitrary(min, max) {
 }
 
 var users = {};
+var profile = {};
 
 function getUser(username) {
   if (!users[username]) {
     users[username] = faker.helpers.createCard();
     users[username].name = username;
     users[username].username = username;
+    users[username].email = username + '@gmail.com';
+    users[username].image = faker.image.cats() + '?' + username;
   }
 
   return users[username];
@@ -31,8 +34,7 @@ router.get('/', function(req, res) {
 
 router.get('/infoFast/:username', function(req, res) {
 
-	//if (getRandomArbitrary(0, 10) < 2) {
-  if (getRandomArbitrary(0, 10) < 20) {
+	if (getRandomArbitrary(0, 10) < 2) {
     	res.send(getUser(req.params.username));
 	} else {
     	res.status(500);
@@ -49,8 +51,17 @@ router.get('/infoSlow/:username', function(req, res) {
 })
 
 router.get('/image/:username', function(req, res) {
-	//res.writeHead(200, {'Content-Type': 'text/plain' });
-     res.send(faker.image.cats() + '?' + req.params.username);
+     res.send(getUser(req.params.username).image);
 })
+
+router.get('/profile', function(req, res) {
+  res.send(profile);
+});
+
+router.post('/profile', function(req, res) {
+  profile = req.body;
+  res.send('Success');
+});
+
 
 module.exports = router;

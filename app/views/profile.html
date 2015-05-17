@@ -1,7 +1,8 @@
 <h1>Profile</h1>
 
-<form name="profileForm" submit="saveProfile()" novalidate>
-	<div class="form-group">
+<form name="profileForm" ng-submit="saveProfile()" novalidate>
+	<div class="info-message">{{status}}</div>
+	<div class="form-group" ng-class="{'has-error': profileForm.name.$invalid && profileForm.$dirty}">
 		<label for="profileName">Name</label>
 		<input type="text" 
 				name="name" 
@@ -9,30 +10,42 @@
 				ng-model="user.name" 
 				placeholder="Name" 
 				class="form-control" 
-				required ng-min-length="1"
-				ng-class="{'has-error': profileForm.name.$invalid}"/>
+				required ng-min-length="1"/>
+		<span class="help-block" ng-if="profileForm.name.$invalid && profileForm.$dirty">
+			<ng-messages for="profileForm.name.$error" role="alert">
+			  <ng-message when="required">This is required</ng-message>
+			</ng-messages>
+		</span>
 	</div>
-	<div class="form-group">
+	<div class="form-group" ng-class="{'has-error': profileForm.age.$invalid}">
 		<label for="profileAge">Age</label>
 		<input type="number" 
 				name="age" 
 				ng-model="user.age" 
-				ng-min="1" 
+				ng-min="18" 
+				ng-max="100"
 				id="profileAge" 
 				placeholder="Age" 
-				class="form-control"
-				ng-class="{'has-error': profileForm.age.$invalid}"/>
+				class="form-control"/>
+		<span class="help-block" ng-if="profileForm.$dirty" ng-messages="profileForm.age.$error">
+			  <div ng-message="min">It must be greater than 18</div>
+			  <div ng-message="max">You can't be that old...</div>
+		</span>
 	</div>
-	<div class="form-group">
+	<div class="form-group" ng-class="{'has-error': profileForm.email.$invalid}">
 		<label for="profileEmail">Email</label>
 		<input type="email" 
 				name="email" 
 				id="profileEmail" 
 				ng-model="user.email" 
 				placeholder="Email" 
-				class="form-control"
-				ng-class="{'has-error': profileForm.email.$invalid}"/>
+				class="form-control"/>
+		<span class="help-block" ng-if="profileForm.email.$invalid && profileForm.$dirty">
+			<ng-messages for="profileForm.email.$error" role="alert">
+			  <ng-message when="email">Must be a valid email address</ng-message>
+			</ng-messages>
+		</span>
 	</div>
 	<input type="submit" class="btn btn-success" />
-	<div ng-show="profileForm.$invalid && profileForm.$dirty" class=".danger">There is error in this form</div>
+	<div ng-show="profileForm.$invalid && profileForm.$dirty" class="error-message">There is error in this form</div>
 </form>

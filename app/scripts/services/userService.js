@@ -1,4 +1,4 @@
-"uses strict";
+'use strict';
 
 angular.module('leChatApp')
   .service('userService', function ($http) {
@@ -7,7 +7,7 @@ angular.module('leChatApp')
     userService.getUserProfile = function(userName) {
     	return $http.get('users/infoFast/'+ userName)
     	.catch(function() {
-    		return $http.get('users/infoSlow/' + userName)
+    		return $http.get('users/infoSlow/' + userName);
     	})
     	.then(function(userInfo) {
 	    	return userInfo.data;
@@ -20,12 +20,12 @@ angular.module('leChatApp')
     	return $http.get('users/profile')
     	.then(function(profileInfo) {
     		return profileInfo.data;
-    	})
-    }
+    	});
+    };
 
     userService.saveCurrentUserProfile = function(user) {
         return $http.post('users/profile', user);
-    }
+    };
 
     return userService;
   });

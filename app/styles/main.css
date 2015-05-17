@@ -117,9 +117,13 @@ form[name="chatInputForm"] {
 }
 
 .error-message {
-
+  color: red;
 }
 
 .too-long {
   color:red;
+}
+
+.info-message {
+  color: green;
 }

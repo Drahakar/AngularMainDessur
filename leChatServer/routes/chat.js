@@ -10,13 +10,17 @@ var id = 0;
 var generateChat = function() {
   var randomUser = faker.helpers.createCard();
   chatLogs.push({
-        postId: ++id + new Date(), //probably not thread safe...
+        postId: ++id + new Date(),
         author: {
           name: randomUser.username,
           imageUrl: faker.image.cats() + '?' + randomUser.username
         },
         message: randomUser.company.catchPhrase
       });
+
+  if(chatLogs.length > 500) {
+    chatLogs = chatLogs.slice(0, 500);
+  }
 };
 
 /* GET users listing. */
@@ -37,7 +41,7 @@ router.post('/', function(req, res) {
         },
         message: req.body.message
       });
-   res.send(200);
+   res.send("Saved yo.");
 });
 
 router.get('/reset', function(req, res) {

@@ -2,7 +2,7 @@
 
 angular.module('leChatApp')
   .controller('UserCtrl', function ($scope, $routeParams, userService) {
-  	$scope.$watch(function() {return userService.status}, function(status)  {
+  	$scope.$watch(function() {return userService.status;}, function(status)  {
   		$scope.status = status;
   	});
 

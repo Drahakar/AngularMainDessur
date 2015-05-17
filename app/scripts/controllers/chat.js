@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name leChatApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the leChatApp
- */
 angular.module('leChatApp')
   .controller('MainCtrl', function ($scope, chatService) {
     $scope.chat = {
@@ -36,7 +29,7 @@ angular.module('leChatApp')
     };
 
     $scope.$watch(function () { return chatService.messages; }, function (newVal) {
-    	$scope.chat.notVisibleMessages = newVal.length - $scope.chat.messages.length
+    	$scope.chat.notVisibleMessages = newVal.length - $scope.chat.messages.length;
 	});
 
     $scope.updateChat();
