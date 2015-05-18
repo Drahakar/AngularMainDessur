@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('leChatApp')
-  .controller('MainCtrl', function ($scope, chatService) {
+  .controller('ChatCtrl', function ($scope, chatService) {
     $scope.chat = {
     	notVisibleMessages: 0,
     	messages: []
@@ -10,15 +10,15 @@ angular.module('leChatApp')
     $scope.chatInput = '';
 
     $scope.submit = function() {
-      if ($scope.chatInputForm.$invalid) {
-        return;
-      }
+        if ($scope.chatInputForm.$invalid) {
+            return;
+        }
 
-  		chatService.sendChat($scope.chatInput)
-    		.then($scope.updateChat)
-    		.then(function() {
-    			$scope.chatInput = '';
-    		});
+    	chatService.sendChat($scope.chatInput)
+    	.then($scope.updateChat)
+    	.then(function() {
+    		$scope.chatInput = '';
+    	});
     };
 
     $scope.updateChat = function() {

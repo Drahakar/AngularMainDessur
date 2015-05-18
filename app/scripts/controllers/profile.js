@@ -9,7 +9,7 @@ angular.module('leChatApp')
   		}
 
       userService.saveCurrentUserProfile($scope.user).then(function() {
-        $scope.status = "Profile saved.";
+        $scope.status = 'Profile saved.';
       });
   	};
 
