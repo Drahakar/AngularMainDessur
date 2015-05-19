@@ -1,0 +1,49 @@
+<h1>Profile</h1>
+
+<form name="profileForm" novalidate>
+	<div class="info-message">Status</div>
+	<div class="form-group">
+		<label for="profileName">Name</label>
+		<input type="text" 
+				name="name" 
+				id="profileName" 
+				placeholder="Name" 
+				class="form-control" />
+		<span class="help-block">
+			This is a help block (Should only be visible when there is an error on the form)
+			This is a required field
+			Should only show this message when the form is first modified (look for $dirty)
+		</span>
+	</div>
+	<div class="form-group">
+		<label for="profileAge">Age</label>
+		<input type="text" 
+				name="age" 
+				id="profileAge" 
+				placeholder="Age" 
+				class="form-control"/>
+		<span class="help-block" >
+			So helpfull :) (Should only be visible when there is an error on the form)
+			Age must be between 18 and 100, must show a different error message
+			It must be a number....
+		</span>
+	</div>
+	<div class="form-group">
+		<label for="profileEmail">Email</label>
+		<input type="text" 
+				name="email" 
+				id="profileEmail" 
+				placeholder="Email" 
+				class="form-control"/>
+		<span class="help-block">
+			Very Help. (Should only be visible when there is an error on the form)
+			Should be an email... Try not to use a regex yourself ;)
+		</span>
+	</div>
+	<input type="submit" class="btn btn-success" />
+	<div class="error-message">
+		There is error in this form (Should only be visible when there is an error on the form)
+		You might want to have a look at $invalid
+
+	</div>
+</form>

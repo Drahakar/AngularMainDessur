@@ -46,26 +46,10 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container" ng-controller="ChatCtrl">
       
       <!-- EUREKA -->
       <!-- INSERT HTML HERE -->
-
-      <form name="filterForm">
-        <div class="form-group">
-          <label>filter</label>
-          <input type="text"
-              class="form-control" />
-        </div>
-      </form>
-      <div class="row chat-container">
-        <div class="chat-show-last"><a>Show last x messages</a></div>
-        <div class="chat-message-container">
-          <div class="message-author"><img class="message-author-picture"></img><span class="message-author-name"><a>Name</a></span></div>
-          <div class="message-message">Message</div>
-        </div>
-      </div>
-    </div>
 
     <div class="footer">
       <div class="container">
@@ -90,6 +74,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/chat.js"></script>
         <!-- endbuild -->
 </body>
 </html>
