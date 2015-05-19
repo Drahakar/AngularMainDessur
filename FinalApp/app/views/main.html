@@ -13,7 +13,6 @@
   <div class="chat-message-container" ng-repeat="message in chat.messages | filter: textFilter track by message.postId ">
     <div class="message-author"><img ng-src="{{message.author.imageUrl}}" class="message-author-picture"></img><span class="message-author-name"><a href="#/user/{{message.author.name}}">{{message.author.name}}</a></span></div>
     <div class="message-message">{{message.message}}</div>
-    <div class="chat-message-option">{{message.isStarred}}</div>
   </div>
 </div>
 <div>
